@@ -89,11 +89,11 @@ function nextSequence() {
   playSound(randomChosenColour);
 
   // reset ui and clicked patterns
-  setHighScoreHeader(highscore);
-  setHeaderLevel(level);
-  setSuccessCounterHeader(successCounter);
-  userClickedPattern = [];
   successCounter = 0;
+  userClickedPattern = [];
+  setHighScoreHeader(highscore);
+  setSuccessCounterHeader(successCounter);
+  setHeaderLevel(level);
 
   // increment level.
   level++;
