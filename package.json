@@ -1,0 +1,32 @@
+{
+  "name": "jquery",
+  "version": "1.0.0",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sagie Baram",
+  "license": "ISC",
+  "description": "Simon game",
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "jquery": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-unused-vars": "off"
+    }
+  },
+  "dependencies": {
+    "debug": "^4.3.4"
+  }
+}
