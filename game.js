@@ -4,8 +4,9 @@ var gamePattern = [];
 var started = false;
 var successCounter = 1;
 var level = 1;
+var highscore = 0;
 
-$(document).on("keypress", function () {
+$(document).on("keypress", function() {
   if (!started) {
     setTimeout(() => {
       nextSequence();
@@ -14,8 +15,7 @@ $(document).on("keypress", function () {
   }
 });
 
-
-$(".btn").on("click", function (event) {
+$(".btn").on("click", function(event) {
   var userChosenColour = event.target.id;
   userClickedPattern.push(userChosenColour);
   animatePress(userChosenColour);
@@ -31,9 +31,18 @@ function setHeaderLevel(currentLevel) {
   $("#level-title").text("Level " + currentLevel);
 }
 
+function setHighScoreHeader(highscore) {
+  $("#highscore-title").show();
+  $("#highscore-title").text("Highscore: " + highscore);
+}
+
 function setSuccessCounterHeader(successCounter) {
-  $("#success-title").show()
-  $("#success-title").text("Sequence Counter: " + successCounter)
+  $("#success-title").show();
+  $("#success-title").text("Sequence Counter: " + successCounter);
+}
+
+function setHighScore(level) {
+  highscore = level - 1;
 }
 
 function playSound(name) {
@@ -43,11 +52,10 @@ function playSound(name) {
 
 function animatePress(currentColour) {
   $("#" + currentColour).addClass("pressed");
-  setTimeout(function () {
+  setTimeout(function() {
     $("#" + currentColour).removeClass("pressed");
   }, 100);
 }
-
 
 function checkAnswer(currentLevel) {
   for (let i = 0; i < currentLevel; i++) {
@@ -81,6 +89,7 @@ function nextSequence() {
   playSound(randomChosenColour);
 
   // reset ui and clicked patterns
+  setHighScoreHeader(highscore);
   setHeaderLevel(level);
   setSuccessCounterHeader(successCounter);
   userClickedPattern = [];
@@ -90,9 +99,11 @@ function nextSequence() {
   level++;
 }
 
-
 function gameOver() {
   // reset game.
+  if (level > highscore) {
+    setHighScore(level - 1);
+  }
   gamePattern = [];
   userClickedPattern = [];
   successCounter = 1;
@@ -102,9 +113,10 @@ function gameOver() {
   // play wrong sound effect and flash game-over effect.
   playSound("wrong");
   $("body").addClass("game-over");
-  setTimeout(function () {
+  setTimeout(function() {
     $("body").removeClass("game-over");
     $("#success-title").hide();
+    $("#highscore-title").hide();
   }, 200);
   // set title to tell the player the game is over.
   $("#level-title").text("Game Over, Press Any Key to Restart");
