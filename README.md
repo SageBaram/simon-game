@@ -2,7 +2,6 @@
 
 In this project I practiced JS & JQuery, the css images and the html are
 boilerplate from the course's resource with some modifications.
-Check it out on my github page: [SageBaram.github.io/simon-game](https://sagebaram.github.io/simon-game/)
 
 ## Usage
 
